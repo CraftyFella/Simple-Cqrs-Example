@@ -1,9 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Threading;
+using AgileWorkshop.Cqrs.Core;
 using Inventory.Infrastructure;
 
-namespace AgileWorkshop.Cqrs.Core
+namespace AgileWorkshop.Bus
 {
     public class FakeBus : ICommandSender, IEventPublisher
     {

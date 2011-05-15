@@ -1,4 +1,5 @@
 ﻿using System.Runtime.Serialization.Formatters.Binary;
+using AgileWorkshop.Bus;
 using AgileWorkshop.Cqrs.Core;
 using Inventory.CommandHandlers;
 using Inventory.Commands;

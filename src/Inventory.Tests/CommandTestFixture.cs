@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using AgileWorkshop.Bus;
 using AgileWorkshop.Cqrs.Core;
 using Inventory.EventStore;
 using Moq;

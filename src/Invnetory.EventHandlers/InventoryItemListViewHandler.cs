@@ -1,4 +1,5 @@
-﻿using AgileWorkshop.Cqrs.Core;
+﻿using AgileWorkshop.Bus;
+using AgileWorkshop.Cqrs.Core;
 using Inventory.Events;
 using Inventory.Reporting;
 using Inventory.Reporting.Dto;

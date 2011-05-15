@@ -1,4 +1,4 @@
-﻿namespace AgileWorkshop.Cqrs.Core
+﻿namespace AgileWorkshop.Bus
 {
 	public interface IHandle<T>
 	{

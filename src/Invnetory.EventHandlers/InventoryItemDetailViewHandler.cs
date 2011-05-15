@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Linq;
+using AgileWorkshop.Bus;
 using AgileWorkshop.Cqrs.Core;
 using Inventory.Events;
 using Inventory.Reporting;

@@ -1,4 +1,6 @@
-﻿namespace AgileWorkshop.Cqrs.Core
+﻿using AgileWorkshop.Cqrs.Core;
+
+namespace AgileWorkshop.Bus
 {
 	public interface IEventPublisher
 	{

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Web.Mvc;
+using AgileWorkshop.Bus;
 using AgileWorkshop.Cqrs.Core;
 using Inventory.Commands;
 using Inventory.Reporting;

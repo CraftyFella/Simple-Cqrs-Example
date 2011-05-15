@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Data.SQLite;
 using System.Linq;
 using System.Runtime.Serialization;
+using AgileWorkshop.Bus;
 using AgileWorkshop.Cqrs.Core;
 
 namespace Inventory.EventStore
