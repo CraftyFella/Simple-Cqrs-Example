@@ -1,0 +1,4 @@
+Took Grey Youngs simple cqrs example and added a few things:
+
+1. Testing
+2. Sqlite reporting support and sqlite event store support
