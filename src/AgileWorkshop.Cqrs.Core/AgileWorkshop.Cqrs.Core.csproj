@@ -47,7 +47,7 @@
     <Compile Include="Event.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Inventory.Utils\AgileWorkshop.Cqrs.Utils.csproj">
+    <ProjectReference Include="..\AgileWorkshop.Cqrs.Utils\AgileWorkshop.Cqrs.Utils.csproj">
       <Project>{C3146FD9-A435-4690-9468-3B54C5E1CC39}</Project>
       <Name>AgileWorkshop.Cqrs.Utils</Name>
     </ProjectReference>

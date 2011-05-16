@@ -53,7 +53,7 @@
       <Project>{12B4A4A2-93B9-4F1B-B29B-ED68B91004D9}</Project>
       <Name>AgileWorkshop.Cqrs.Core</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Inventory.Utils\AgileWorkshop.Cqrs.Utils.csproj">
+    <ProjectReference Include="..\AgileWorkshop.Cqrs.Utils\AgileWorkshop.Cqrs.Utils.csproj">
       <Project>{C3146FD9-A435-4690-9468-3B54C5E1CC39}</Project>
       <Name>AgileWorkshop.Cqrs.Utils</Name>
     </ProjectReference>

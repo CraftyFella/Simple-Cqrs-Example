@@ -62,13 +62,13 @@
     <Compile Include="SqlUpdateBuilder.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\AgileWorkshop.Cqrs.Utils\AgileWorkshop.Cqrs.Utils.csproj">
+      <Project>{C3146FD9-A435-4690-9468-3B54C5E1CC39}</Project>
+      <Name>AgileWorkshop.Cqrs.Utils</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Inventory.Reporting.Dto\Inventory.Reporting.Dto.csproj">
       <Project>{88C6AEC5-5553-4461-95C2-3CCB88EAEC4E}</Project>
       <Name>Inventory.Reporting.Dto</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Inventory.Utils\AgileWorkshop.Cqrs.Utils.csproj">
-      <Project>{C3146FD9-A435-4690-9468-3B54C5E1CC39}</Project>
-      <Name>AgileWorkshop.Cqrs.Utils</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
