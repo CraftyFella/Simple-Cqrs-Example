@@ -2,11 +2,12 @@
 using AgileWorkshop.Cqrs.Core;
 using Inventory.Commands;
 using Inventory.Domain;
-using Inventory.EventStore;
 
 namespace Inventory.CommandHandlers
 {
-    public class InventoryCommandHandlers : IHandle<CreateInventoryItem>, IHandle<DeactivateInventoryItem>, IHandle<RemoveItemsFromInventory>, IHandle<CheckInItemsToInventory>, IHandle<RenameInventoryItem>
+	using AgileWorkshop.Cqrs.EventStore;
+
+	public class InventoryCommandHandlers : IHandle<CreateInventoryItem>, IHandle<DeactivateInventoryItem>, IHandle<RemoveItemsFromInventory>, IHandle<CheckInItemsToInventory>, IHandle<RenameInventoryItem>
     {
         private readonly IDomainRepository<InventoryItem> domainRepository;
         public InventoryCommandHandlers(IDomainRepository<InventoryItem> domainRepository)

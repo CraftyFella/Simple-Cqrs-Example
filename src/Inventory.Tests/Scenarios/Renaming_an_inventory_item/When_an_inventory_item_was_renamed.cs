@@ -8,7 +8,9 @@ using Moq;
 
 namespace Inventory.Tests.Scenarios.Adding_a_new_inventory_item
 {
-    public class When_an_inventory_item_was_renamed : EventTestFixture<InventoryItemRenamed, InventoryItemDetailViewHandler>
+	using AgileWorkshop.Cqrs.Reporting;
+
+	public class When_an_inventory_item_was_renamed : EventTestFixture<InventoryItemRenamed, InventoryItemDetailViewHandler>
     {
             private static Guid _itemId;
             private object UpdateItemObject;

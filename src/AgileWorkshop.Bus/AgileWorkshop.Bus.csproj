@@ -42,8 +42,10 @@
   <ItemGroup>
     <Compile Include="FakeBus.cs" />
     <Compile Include="IHandle.cs" />
-    <Compile Include="ICommandSender.cs" />
-    <Compile Include="IEventPublisher.cs" />
+    <Compile Include="ICommandBus.cs" />
+    <Compile Include="IEventBus.cs" />
+    <Compile Include="IRouteMessages.cs" />
+    <Compile Include="MessageRouter.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

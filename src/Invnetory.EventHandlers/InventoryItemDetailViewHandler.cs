@@ -8,6 +8,8 @@ using Inventory.Reporting.Dto;
 
 namespace Inventory.EventHandlers
 {
+	using AgileWorkshop.Cqrs.Reporting;
+
 	public class InventoryItemDetailViewHandler : IHandle<InventoryItemCreated>, IHandle<InventoryItemDeactivated>, IHandle<InventoryItemRenamed>, IHandle<ItemsRemovedFromInventory>, IHandle<ItemsCheckedInToInventory>
 	{
 		private readonly IReportingRepository reportingRepository;

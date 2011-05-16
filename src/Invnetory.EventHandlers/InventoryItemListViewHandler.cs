@@ -1,11 +1,11 @@
 ﻿using AgileWorkshop.Bus;
-using AgileWorkshop.Cqrs.Core;
 using Inventory.Events;
-using Inventory.Reporting;
 using Inventory.Reporting.Dto;
 
 namespace Inventory.EventHandlers
 {
+	using AgileWorkshop.Cqrs.Reporting;
+
 	public class InventoryItemListViewHandler : IHandle<InventoryItemCreated>, IHandle<InventoryItemRenamed>, IHandle<InventoryItemDeactivated>
 	{
 		private readonly IReportingRepository reportingRepository;

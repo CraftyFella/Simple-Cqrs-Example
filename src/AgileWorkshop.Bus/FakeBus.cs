@@ -1,50 +1,33 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Threading;
-using AgileWorkshop.Cqrs.Core;
-using Inventory.Infrastructure;
+﻿using AgileWorkshop.Cqrs.Core;
 
 namespace AgileWorkshop.Bus
 {
-    public class FakeBus : ICommandSender, IEventPublisher
+    public class FakeBus : ICommandBus, IEventBus
     {
-        private readonly Dictionary<Type, List<Action<Message>>> _routes = new Dictionary<Type, List<Action<Message>>>();
 
-        public void RegisterHandler<T>(Action<T> handler) where T : Message
-        {
-            List<Action<Message>> handlers;
-            if(!_routes.TryGetValue(typeof(T), out handlers))
-            {
-                handlers = new List<Action<Message>>();
-                _routes.Add(typeof(T), handlers);
-            }
-            handlers.Add(DelegateAdjuster.CastArgument<Message, T>(x => handler(x)));
-        }
+		private object lockObject = new object();
+
+		public FakeBus(IRouteMessages messageRouter)
+    	{
+    		this.messageRouter = messageRouter;
+    	}
+
+    	private readonly IRouteMessages messageRouter;
 
         public void Send<T>(T command) where T : Command
         {
-            List<Action<Message>> handlers; 
-            if (_routes.TryGetValue(typeof(T), out handlers))
-            {
-                if (handlers.Count != 1) throw new InvalidOperationException("cannot send to more than one handler");
-                handlers[0](command);
-            }
-            else
-            {
-                throw new InvalidOperationException("no handler registered");
-            }
+			lock(lockObject)
+			{
+				this.messageRouter.Route(command);
+			}
         }
 
         public void Publish<T>(T @event) where T : Event
         {
-            List<Action<Message>> handlers; 
-            if (!_routes.TryGetValue(@event.GetType(), out handlers)) return;
-            foreach(var handler in handlers)
-            {
-                //dispatch on thread pool for added awesomeness
-                var handler1 = handler;
-                ThreadPool.QueueUserWorkItem(x => handler1(@event));
-            }
+			lock(lockObject)
+			{
+				this.messageRouter.Route(@event);
+			}
         }
     }
 }

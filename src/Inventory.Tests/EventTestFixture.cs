@@ -8,7 +8,9 @@ using Moq;
 
 namespace Inventory.Tests.Scenarios.Adding_a_new_inventory_item
 {
-    [Specification]
+	using AgileWorkshop.Cqrs.Reporting;
+
+	[Specification]
     public abstract class EventTestFixture<TEvent, TEventHandler>
         where TEvent : class
         where TEventHandler : class, IHandle<TEvent>

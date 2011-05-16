@@ -5,11 +5,11 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>8.0.30703</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{64527A61-7687-42F3-A07F-1DB5A35840D9}</ProjectGuid>
+    <ProjectGuid>{29FAAE57-D603-4FC4-AAAA-88B183007CFC}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Inventory.EventHandlers</RootNamespace>
-    <AssemblyName>Inventory.EventHandlers</AssemblyName>
+    <RootNamespace>AgileWorkshop.Cqrs.EventStore</RootNamespace>
+    <AssemblyName>AgileWorkshop.Cqrs.EventStore</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -31,8 +31,15 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Iesi.Collections">
+      <HintPath>..\packages\Iesi.Collections.3.1.0.4000\lib\Net35\Iesi.Collections.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Data.SQLite, Version=1.0.69.0, Culture=neutral, PublicKeyToken=db937bc2d44ff139, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\lib\Sqlite\System.Data.SQLite.DLL</HintPath>
+    </Reference>
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -40,9 +47,16 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="InventoryItemDetailViewHandler.cs" />
-    <Compile Include="InventoryItemListViewHandler.cs" />
+    <Compile Include="AggregateNotFoundException.cs" />
+    <Compile Include="ConcurrencyException.cs" />
+    <Compile Include="EventStoreDatabaseBootStrapper.cs" />
+    <Compile Include="SqliteEventStore.cs" />
+    <Compile Include="EventDescriptor.cs" />
+    <Compile Include="InMemoryEventStore.cs" />
+    <Compile Include="IEventStore.cs" />
+    <Compile Include="IDomainRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="DomainRepository.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\AgileWorkshop.Bus\AgileWorkshop.Bus.csproj">
@@ -53,18 +67,11 @@
       <Project>{12B4A4A2-93B9-4F1B-B29B-ED68B91004D9}</Project>
       <Name>AgileWorkshop.Cqrs.Core</Name>
     </ProjectReference>
-    <ProjectReference Include="..\AgileWorkshop.Cqrs.Reporting\AgileWorkshop.Cqrs.Reporting.csproj">
-      <Project>{25DB027C-C680-47F2-BCAC-2C3FC8426F06}</Project>
-      <Name>AgileWorkshop.Cqrs.Reporting</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Inventory.Events\Inventory.Events.csproj">
-      <Project>{2826A6D7-02B4-4BEF-AF91-D5A279C75920}</Project>
-      <Name>Inventory.Events</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Inventory.Reporting.Dto\Inventory.Reporting.Dto.csproj">
-      <Project>{88C6AEC5-5553-4461-95C2-3CCB88EAEC4E}</Project>
-      <Name>Inventory.Reporting.Dto</Name>
-    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config">
+      <SubType>Designer</SubType>
+    </None>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -7,15 +7,17 @@ using Inventory.Reporting;
 
 namespace Inventory.Gui.Controllers
 {
-    [HandleError]
+	using AgileWorkshop.Cqrs.Reporting;
+
+	[HandleError]
     public class HomeController : Controller
     {
-        private FakeBus _bus;
+        private ICommandBus _bus;
         private ReadModelFacade _readmodel;
 
         public HomeController()
         {
-            _bus = ServiceLocator.Bus;
+            _bus = ServiceLocator.CommandBus;
             _readmodel = new ReadModelFacade(ServiceLocator.ReportingRepository);
         }
 

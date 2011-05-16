@@ -6,7 +6,7 @@ using Inventory.CommandHandlers;
 using Inventory.Commands;
 using Inventory.Domain;
 using Inventory.Events;
-using Inventory.EventStore;
+
 using Moq;
 
 namespace Inventory.Tests.Scenarios.Adding_a_new_inventory_item

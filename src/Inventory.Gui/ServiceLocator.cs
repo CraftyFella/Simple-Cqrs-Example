@@ -4,9 +4,12 @@ using Inventory.Reporting;
 
 namespace Inventory.Gui
 {
-    public static class ServiceLocator
+	using AgileWorkshop.Cqrs.Reporting;
+
+	public static class ServiceLocator
     {
-        public static FakeBus Bus { get; set; }
+		public static IEventBus EventBus { get; set; }
+        public static ICommandBus CommandBus { get; set; }
     	public static IReportingRepository ReportingRepository { get; set; }
     }
 }

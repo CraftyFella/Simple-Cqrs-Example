@@ -60,9 +60,9 @@
       <Project>{EE98DCDE-9A00-4564-9DFF-753F0A02790E}</Project>
       <Name>Inventory.Domain</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Inventory.EventStore\Inventory.EventStore.csproj">
+    <ProjectReference Include="..\AgileWorkshop.Cqrs.EventStore\AgileWorkshop.Cqrs.EventStore.csproj">
       <Project>{29FAAE57-D603-4FC4-AAAA-88B183007CFC}</Project>
-      <Name>Inventory.EventStore</Name>
+      <Name>AgileWorkshop.Cqrs.EventStore</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

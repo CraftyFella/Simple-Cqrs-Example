@@ -3,12 +3,14 @@ using System.Collections.Generic;
 using System.Linq;
 using AgileWorkshop.Bus;
 using AgileWorkshop.Cqrs.Core;
-using Inventory.EventStore;
+
 using Moq;
 using NUnit.Framework;
 
 namespace Inventory.Tests
 {
+	using AgileWorkshop.Cqrs.EventStore;
+
 	[Specification]
 	public abstract class CommandTestFixture<TCommand, TCommandHandler, TAggregateRoot> 
 		where TCommand : Command
