@@ -11,44 +11,16 @@
 	{
 		private readonly IFormatter formatter = new BinaryFormatter();
 
-		public Event Event
-		{ 
-			get { return Deserialize<Event>(EventData); }
-		}
-
-		public byte[] EventData { get; set; }
-
-		public int Id { get; set; }
-		public Guid AggregateId { get; set; }
-		public int Version { get; set; }
-            
-		public EventDescriptor()
-		{
-			
-		}
-
+		public Event Event { get; private set; }
+		public Guid AggregateId { get; private set; }
+		public int Version { get; private set; }
+        
 		public EventDescriptor(Guid aggregateId, Event @event, int version)
 		{
-			EventData = Serialize(@event);
+			Event = @event;
 			Version = version;
 			AggregateId = aggregateId;
 		}
 
-		private byte[] Serialize(object theObject)
-		{
-			using (var memoryStream = new MemoryStream())
-			{
-				formatter.Serialize(memoryStream, theObject);
-				return memoryStream.ToArray();
-			}
-		}
-
-		private TType Deserialize<TType>(byte[] bytes)
-		{
-			using (var memoryStream = new MemoryStream(bytes))
-			{
-				return (TType)formatter.Deserialize(memoryStream);
-			}
-		}
 	}
 }

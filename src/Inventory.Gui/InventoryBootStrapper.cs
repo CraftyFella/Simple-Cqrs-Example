@@ -10,58 +10,51 @@ using Inventory.Reporting;
 
 namespace Inventory.Gui
 {
+	using System.Runtime.Serialization;
+
 	using AgileWorkshop.Cqrs.EventStore;
 	using AgileWorkshop.Cqrs.Reporting;
+
+	using Ninject;
+	using Ninject.Modules;
 
 	public class InventoryBootStrapper
     {
         public void BootStrapTheApplication()
         {
-            EventStoreDatabaseBootStrapper.BootStrap();
+			EventStoreDatabaseBootStrapper.BootStrap();
             ReportingDatabaseBootStrapper.BootStrap();
+			//kernel = new StandardKernel(new InventoryConfigModule());
 
-			var router = new MessageRouter();
-			var commandBus = new FakeBus(router);
-			var eventBus = new FakeBus(router);
+			//var router = kernel.Get<IRouteMessages>();
 
-            ServiceLocator.CommandBus = commandBus;
-			ServiceLocator.EventBus = eventBus;
+			//// Register Command Handlers
+			//router.RegisterHandler<CheckInItemsToInventory>(kernel.Get<IHandle<CheckInItemsToInventory>>().Handle);
+			//router.RegisterHandler<CreateInventoryItem>(kernel.Get<IHandle<CreateInventoryItem>>().Handle);
+			//router.RegisterHandler<DeactivateInventoryItem>(kernel.Get<IHandle<DeactivateInventoryItem>>().Handle);
+			//router.RegisterHandler<RemoveItemsFromInventory>(kernel.Get<IHandle<RemoveItemsFromInventory>>().Handle);
+			//router.RegisterHandler<RenameInventoryItem>(kernel.Get<IHandle<RenameInventoryItem>>().Handle);
 
-            //var storage = new InMemoryEventStore(bus);
-            //var storage = new NHibernateSqliteEventStore(bus, NHibernateSessionHelper.CreateSessionFactory(), new BinaryFormatter());
-            var storage = new SqliteEventStore(ServiceLocator.EventBus, new BinaryFormatter(), "Data Source=eventStore.db3");
+			//// Register Event Handlers
+			//router.RegisterHandler<InventoryItemCreated>(kernel.Get<IHandle<InventoryItemCreated>>().Handle);
+			//router.RegisterHandler<InventoryItemDeactivated>(kernel.Get<IHandle<InventoryItemDeactivated>>().Handle);
+			//router.RegisterHandler<InventoryItemRenamed>(kernel.Get<IHandle<InventoryItemRenamed>>().Handle);
+			//router.RegisterHandler<ItemsCheckedInToInventory>(kernel.Get<IHandle<ItemsCheckedInToInventory>>().Handle);
+			//router.RegisterHandler<ItemsRemovedFromInventory>(kernel.Get<IHandle<ItemsRemovedFromInventory>>().Handle);
 
-            var rep = new DomainRepository<InventoryItem>(storage);
-            var commands = new InventoryCommandHandlers(rep);
-            router.RegisterHandler<CheckInItemsToInventory>(commands.Handle);
-            router.RegisterHandler<CreateInventoryItem>(commands.Handle);
-            router.RegisterHandler<DeactivateInventoryItem>(commands.Handle);
-            router.RegisterHandler<RemoveItemsFromInventory>(commands.Handle);
-            router.RegisterHandler<RenameInventoryItem>(commands.Handle);
-
-            var sqlInsertBuilder = new SqlInsertBuilder();
-            var sqlSelectBuilder = new SqlSelectBuilder();
-            var sqlUpdateBuilder = new SqlUpdateBuilder();
-            var sqlDeleteBuilder = new SqlDeleteBuilder();
-            var reportingRepository = new SQLiteReportingRepository("Data Source=reportingDataBase.db3", sqlSelectBuilder,
-                                                                    sqlInsertBuilder, sqlUpdateBuilder, sqlDeleteBuilder);
-            var detail = new InventoryItemDetailViewHandler(reportingRepository);
-            ServiceLocator.ReportingRepository = reportingRepository;
-            router.RegisterHandler<InventoryItemCreated>(detail.Handle);
-            router.RegisterHandler<InventoryItemDeactivated>(detail.Handle);
-            router.RegisterHandler<InventoryItemRenamed>(detail.Handle);
-            router.RegisterHandler<ItemsCheckedInToInventory>(detail.Handle);
-            router.RegisterHandler<ItemsRemovedFromInventory>(detail.Handle);
-            var list = new InventoryItemListViewHandler(reportingRepository);
-            router.RegisterHandler<InventoryItemCreated>(list.Handle);
-            router.RegisterHandler<InventoryItemRenamed>(list.Handle);
-            router.RegisterHandler<InventoryItemDeactivated>(list.Handle);
-            
+			//router.RegisterHandler<InventoryItemCreated>(kernel.Get<IHandle<InventoryItemCreated>>().Handle);
+			//router.RegisterHandler<InventoryItemRenamed>(kernel.Get<IHandle<InventoryItemRenamed>>().Handle);
+			//router.RegisterHandler<InventoryItemDeactivated>(kernel.Get<IHandle<InventoryItemDeactivated>>().Handle);
+			
         }
 
         public static void BootStrap()
         {
             new InventoryBootStrapper().BootStrapTheApplication();
         }
+
+		
     }
+
+	
 }
