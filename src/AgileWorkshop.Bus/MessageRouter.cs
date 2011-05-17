@@ -30,7 +30,10 @@
 			{
 				//dispatch on thread pool for added awesomeness
 				var handler1 = handler;
-				ThreadPool.QueueUserWorkItem(x => handler1(message));
+				if (message is Event)
+					ThreadPool.QueueUserWorkItem(x => handler1(message));
+				else 
+					handler1(message);
 			}
 		}
 

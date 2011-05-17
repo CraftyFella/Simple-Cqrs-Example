@@ -1,4 +1,13 @@
-Took Grey Youngs simple cqrs example and added a few things:
+Took Grey Youngs simple cqrs example:
+
+https://github.com/gregoryyoung/m-r
+
+and added a few things:
 
 1. Testing
 2. Sqlite reporting support and sqlite event store support
+3. IoC support using Ninject
+
+Took the Testing and Reporting ideas from Mark Nijhof’s Cqrs example:
+
+https://github.com/MarkNijhof/Fohjin
