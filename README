@@ -8,6 +8,6 @@ and added a few things:
 2. Sqlite reporting support and sqlite event store support
 3. IoC support using Ninject
 
-Took the Testing and Reporting ideas from Mark Nijhof’s Cqrs example:
+Took the Testing and Reporting ideas from Mark Nijhof's Cqrs example:
 
 https://github.com/MarkNijhof/Fohjin
