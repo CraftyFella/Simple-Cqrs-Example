@@ -8,11 +8,13 @@ namespace Inventory.Domain
     {
         private bool _activated;
         private Guid _id;
+        private int _stockLevel;
 
         private void Apply(InventoryItemCreated e)
         {
             _id = e.Id;
             _activated = true;
+            _stockLevel = 0;
         }
 
         private void Apply(InventoryItemDeactivated e)
@@ -29,6 +31,7 @@ namespace Inventory.Domain
         public void Remove(int count)
         {
             if (count <= 0) throw new InvalidOperationException("cant remove negative count from inventory");
+            if ((_stockLevel - count) < 0) throw new InvalidOperationException("cant remove more than wotz in the inventory");
             ApplyChange(new ItemsRemovedFromInventory(_id, count));
         }
 

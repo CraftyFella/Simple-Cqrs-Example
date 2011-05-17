@@ -14,25 +14,48 @@
 
 		public void Route<T>(T message) where T : Message
 		{
-			List<Action<Message>> handlers;
-			_routes.TryGetValue(message.GetType(), out handlers);
-
-			if (message is Command)
+            if (message is Command)
 			{
-				if (handlers == null)
-					throw new InvalidOperationException("no handler registered");
-
-				if (handlers.Count != 1) 
-					throw new InvalidOperationException("cannot send to more than one handler");
+				RouteCommand(message as Command);
 			}
-
-			foreach(var handler in handlers)
+			else
 			{
-				//dispatch on thread pool for added awesomeness
-				var handler1 = handler;
-				ThreadPool.QueueUserWorkItem(x => handler1(message));
+			    RouteEvent(message as Event);
 			}
+			
 		}
+
+        private void RouteEvent<T>(T @event) where T : Event
+        {
+            List<Action<Message>> handlers;
+            _routes.TryGetValue(@event.GetType(), out handlers);
+
+            foreach (var handler in handlers)
+            {
+                //dispatch on thread pool for added awesomeness
+                var handler1 = handler;
+                ThreadPool.QueueUserWorkItem(x => handler1(@event));
+            }
+        }
+
+        private void RouteCommand<T>(T command) where T : Command
+        {
+            List<Action<Message>> handlers;
+            _routes.TryGetValue(command.GetType(), out handlers);
+
+            if (handlers == null)
+                throw new InvalidOperationException("no handler registered");
+
+            if (handlers.Count != 1)
+                throw new InvalidOperationException("cannot send to more than one handler");
+
+            foreach (var handler in handlers)
+            {
+                //dispatch on thread pool for added awesomeness
+                var handler1 = handler;
+                handler1.Invoke(command);
+            }
+        }
 
 		public void RegisterHandler<T>(Action<T> handler) where T : Message
 		{
