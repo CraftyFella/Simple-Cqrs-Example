@@ -1,9 +1,8 @@
 ﻿using System;
 using System.Web.Mvc;
 using AgileWorkshop.Bus;
-using AgileWorkshop.Cqrs.Core;
+
 using Inventory.Commands;
-using Inventory.Reporting;
 
 namespace Inventory.Gui.Controllers
 {
@@ -13,12 +12,12 @@ namespace Inventory.Gui.Controllers
     public class HomeController : Controller
     {
         private ICommandBus _bus;
-        private ReadModelFacade _readmodel;
+		private ReadModelFacade _readmodel;
 
-        public HomeController()
+        public HomeController(ICommandBus bus, IReportingRepository reportingRepository)
         {
-            _bus = ServiceLocator.CommandBus;
-            _readmodel = new ReadModelFacade(ServiceLocator.ReportingRepository);
+            _bus = bus;
+        	_readmodel = new ReadModelFacade(reportingRepository);
         }
 
         public ActionResult Index()

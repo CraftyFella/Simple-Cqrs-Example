@@ -1,6 +1,5 @@
 ﻿using AgileWorkshop.Bus;
-using AgileWorkshop.Cqrs.Core;
-using Inventory.Reporting;
+
 
 namespace Inventory.Gui
 {

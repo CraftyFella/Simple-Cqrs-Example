@@ -3,6 +3,7 @@
 	using System;
 	using System.Collections.Generic;
 	using System.Data.SQLite;
+	using System.IO;
 	using System.Linq;
 	using System.Runtime.Serialization;
 
@@ -61,13 +62,13 @@
 			}
 		}
 
-        private static void SaveEvent(EventDescriptor eventDescriptor, SQLiteTransaction transaction)
+        private void SaveEvent(EventDescriptor eventDescriptor, SQLiteTransaction transaction)
         {
             const string commandText = "INSERT INTO Events VALUES(@aggregateId, @eventData, @version)";
             using (var sqLiteCommand = new SQLiteCommand(commandText, transaction.Connection, transaction))
             {
                 sqLiteCommand.Parameters.Add(new SQLiteParameter("@aggregateId", eventDescriptor.AggregateId));
-                sqLiteCommand.Parameters.Add(new SQLiteParameter("@eventData", eventDescriptor.EventData));
+                sqLiteCommand.Parameters.Add(new SQLiteParameter("@eventData", Serialize(eventDescriptor.Event)));
                 sqLiteCommand.Parameters.Add(new SQLiteParameter("@version", eventDescriptor.Version));
 
                 sqLiteCommand.ExecuteNonQuery();
@@ -95,13 +96,10 @@
                             {
                                 while (sqLiteDataReader.Read())
                                 {
-                                    var eventDescriptor = new EventDescriptor
-                                                              {
-                                                                  AggregateId = aggregateId,
-                                                                  EventData = (byte[]) sqLiteDataReader["eventData"],
-                                                                  Version = (int) sqLiteDataReader["version"]
-                                                              };
-
+                                	var eventDescriptor = new EventDescriptor(
+                                		aggregateId,
+                                		this.Deserialize<Event>((byte[])sqLiteDataReader["eventData"]),
+                                		(int)sqLiteDataReader["version"]);
                                     eventDescriptors.Add(eventDescriptor);
                                 }
                             }
@@ -129,6 +127,21 @@
 			return eventDescriptors.Select(desc => desc.Event).ToList();
 		}
 
-		
+		private byte[] Serialize(object theObject)
+		{
+			using (var memoryStream = new MemoryStream())
+			{
+				formatter.Serialize(memoryStream, theObject);
+				return memoryStream.ToArray();
+			}
+		}
+
+		private TType Deserialize<TType>(byte[] bytes)
+		{
+			using (var memoryStream = new MemoryStream(bytes))
+			{
+				return (TType)formatter.Deserialize(memoryStream);
+			}
+		}
 	}
 }
