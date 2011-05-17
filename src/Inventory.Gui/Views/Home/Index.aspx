@@ -6,6 +6,7 @@
 
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
     <h2>All items:</h2>
+    <p><%=TempData["message"]%></p>
     <ul><% foreach (var inventoryItemListDto in Model)
         {%><li>
             <%: Html.ActionLink("Name: " + inventoryItemListDto.Name,"Details",new{Id=inventoryItemListDto.Id}) %>
