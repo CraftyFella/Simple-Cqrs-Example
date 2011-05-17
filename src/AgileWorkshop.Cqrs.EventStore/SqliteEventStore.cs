@@ -22,9 +22,6 @@
 	        _sqLiteConnectionString = new SQLiteConnection(sqLiteConnectionString);
 	        this.formatter = formatter;
 		}
-
-		// Replaced with Sqlite db
-		//private readonly Dictionary<Guid, List<EventDescriptor>> _current = new Dictionary<Guid, List<EventDescriptor>>(); 
         
 		public void SaveEvents(Guid aggregateId, IEnumerable<Event> events, int expectedVersion)
 		{
