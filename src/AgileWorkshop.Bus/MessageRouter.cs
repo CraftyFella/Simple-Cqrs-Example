@@ -49,12 +49,7 @@
             if (handlers.Count != 1)
                 throw new InvalidOperationException("cannot send to more than one handler");
 
-            foreach (var handler in handlers)
-            {
-                //dispatch on thread pool for added awesomeness
-                var handler1 = handler;
-                handler1.Invoke(command);
-            }
+            handlers[0].Invoke(command);
         }
 
 		public void RegisterHandler<T>(Action<T> handler) where T : Message

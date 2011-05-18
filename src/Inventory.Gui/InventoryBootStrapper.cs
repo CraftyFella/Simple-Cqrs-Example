@@ -1,22 +1,13 @@
-﻿using System.Runtime.Serialization.Formatters.Binary;
-using AgileWorkshop.Bus;
-using AgileWorkshop.Cqrs.Core;
-using Inventory.CommandHandlers;
+﻿using AgileWorkshop.Bus;
 using Inventory.Commands;
-using Inventory.Domain;
-using Inventory.EventHandlers;
 using Inventory.Events;
-using Inventory.Reporting;
+using AgileWorkshop.Cqrs.EventStore;
+using AgileWorkshop.Cqrs.Reporting;
+using Ninject;
 
 namespace Inventory.Gui
 {
-	using System.Runtime.Serialization;
-
-	using AgileWorkshop.Cqrs.EventStore;
-	using AgileWorkshop.Cqrs.Reporting;
-
-	using Ninject;
-	using Ninject.Modules;
+	
 
 	public class InventoryBootStrapper
     {
@@ -24,28 +15,30 @@ namespace Inventory.Gui
         {
 			EventStoreDatabaseBootStrapper.BootStrap();
             ReportingDatabaseBootStrapper.BootStrap();
-			//kernel = new StandardKernel(new InventoryConfigModule());
 
-			//var router = kernel.Get<IRouteMessages>();
+			var router = MvcApplication.InventoryKernal.Get<IRouteMessages>();
 
-			//// Register Command Handlers
-			//router.RegisterHandler<CheckInItemsToInventory>(kernel.Get<IHandle<CheckInItemsToInventory>>().Handle);
-			//router.RegisterHandler<CreateInventoryItem>(kernel.Get<IHandle<CreateInventoryItem>>().Handle);
-			//router.RegisterHandler<DeactivateInventoryItem>(kernel.Get<IHandle<DeactivateInventoryItem>>().Handle);
-			//router.RegisterHandler<RemoveItemsFromInventory>(kernel.Get<IHandle<RemoveItemsFromInventory>>().Handle);
-			//router.RegisterHandler<RenameInventoryItem>(kernel.Get<IHandle<RenameInventoryItem>>().Handle);
+			// TODO: Tidy up into a Helper (Get all IHandles and register with Router
 
-			//// Register Event Handlers
-			//router.RegisterHandler<InventoryItemCreated>(kernel.Get<IHandle<InventoryItemCreated>>().Handle);
-			//router.RegisterHandler<InventoryItemDeactivated>(kernel.Get<IHandle<InventoryItemDeactivated>>().Handle);
-			//router.RegisterHandler<InventoryItemRenamed>(kernel.Get<IHandle<InventoryItemRenamed>>().Handle);
-			//router.RegisterHandler<ItemsCheckedInToInventory>(kernel.Get<IHandle<ItemsCheckedInToInventory>>().Handle);
-			//router.RegisterHandler<ItemsRemovedFromInventory>(kernel.Get<IHandle<ItemsRemovedFromInventory>>().Handle);
+			// Register Command Handlers
+			router.RegisterHandler<CheckInItemsToInventory>(MvcApplication.InventoryKernal.Get<IHandle<CheckInItemsToInventory>>().Handle);
+			router.RegisterHandler<CreateInventoryItem>(MvcApplication.InventoryKernal.Get<IHandle<CreateInventoryItem>>().Handle);
+			router.RegisterHandler<DeactivateInventoryItem>(MvcApplication.InventoryKernal.Get<IHandle<DeactivateInventoryItem>>().Handle);
+			router.RegisterHandler<RemoveItemsFromInventory>(MvcApplication.InventoryKernal.Get<IHandle<RemoveItemsFromInventory>>().Handle);
+			router.RegisterHandler<RenameInventoryItem>(MvcApplication.InventoryKernal.Get<IHandle<RenameInventoryItem>>().Handle);
 
-			//router.RegisterHandler<InventoryItemCreated>(kernel.Get<IHandle<InventoryItemCreated>>().Handle);
-			//router.RegisterHandler<InventoryItemRenamed>(kernel.Get<IHandle<InventoryItemRenamed>>().Handle);
-			//router.RegisterHandler<InventoryItemDeactivated>(kernel.Get<IHandle<InventoryItemDeactivated>>().Handle);
+			// Register Event Handlers
+			foreach (var handler in MvcApplication.InventoryKernal.GetAll<IHandle<InventoryItemCreated>>())
+				router.RegisterHandler<InventoryItemCreated>(handler.Handle);
 			
+			foreach (var handler in MvcApplication.InventoryKernal.GetAll<IHandle<InventoryItemRenamed>>())
+				router.RegisterHandler<InventoryItemRenamed>(handler.Handle);
+
+			foreach (var handler in MvcApplication.InventoryKernal.GetAll<IHandle<InventoryItemDeactivated>>())
+				router.RegisterHandler<InventoryItemDeactivated>(handler.Handle);
+
+			router.RegisterHandler<ItemsCheckedInToInventory>(MvcApplication.InventoryKernal.Get<IHandle<ItemsCheckedInToInventory>>().Handle);
+			router.RegisterHandler<ItemsRemovedFromInventory>(MvcApplication.InventoryKernal.Get<IHandle<ItemsRemovedFromInventory>>().Handle);
         }
 
         public static void BootStrap()
