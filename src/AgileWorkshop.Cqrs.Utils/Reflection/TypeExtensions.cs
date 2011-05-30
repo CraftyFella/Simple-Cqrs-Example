@@ -37,5 +37,28 @@ namespace Inventory.Infrastructure.Reflection
 
             return typeProperties;
 		}
+
+        public static IEnumerable<Type> GetMatchingTypes(this Type[] types, Type type)
+        {
+            return type.IsGenericTypeDefinition ? types.GetTypesMatchingGenericType(type) : types.GetTypesType(type);
+
+        }
+
+        private static IEnumerable<Type> GetTypesMatchingGenericType(this Type[] types, Type genericType)
+        {
+            return
+                types.Where(
+                    x => x.GetInterfaces().Any(y => y.IsGenericType && y.GetGenericTypeDefinition() == genericType));
+        }
+
+        private static IEnumerable<Type> GetTypesType(this Type[] types, Type type)
+        {
+            return
+                types.Where(
+                    t => type.IsAssignableFrom(t)
+                         && t != type
+                         && !t.IsAbstract);
+            
+        }
 	}
 }
