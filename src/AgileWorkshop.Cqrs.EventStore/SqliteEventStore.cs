@@ -1,25 +1,27 @@
-﻿namespace AgileWorkshop.Cqrs.EventStore
-{
-	using System;
-	using System.Collections.Generic;
-	using System.Data.SQLite;
-	using System.IO;
-	using System.Linq;
-	using System.Runtime.Serialization;
+﻿using System;
+using System.Collections.Generic;
+using System.Data.SQLite;
+using System.IO;
+using System.Linq;
+using System.Runtime.Serialization;
 
-	using AgileWorkshop.Bus;
-	using AgileWorkshop.Cqrs.Core;
+using AgileWorkshop.Bus;
+using AgileWorkshop.Cqrs.Core;
+
+namespace AgileWorkshop.Cqrs.EventStore
+{
+	
 
 	public class SqliteEventStore : IEventStore
 	{
 		private readonly IEventBus bus;
 		private readonly IFormatter formatter;
-	    private SQLiteConnection _sqLiteConnectionString;
+	    private readonly SQLiteConnection sqLiteConnectionString;
 
 	    public SqliteEventStore(IEventBus bus, IFormatter formatter, string sqLiteConnectionString)
 		{
 			this.bus = bus;
-	        _sqLiteConnectionString = new SQLiteConnection(sqLiteConnectionString);
+	        this.sqLiteConnectionString = new SQLiteConnection(sqLiteConnectionString);
 	        this.formatter = formatter;
 		}
         
@@ -33,7 +35,7 @@
 			}
 
 			var i = expectedVersion;
-            using (var sqliteConnection = new SQLiteConnection(_sqLiteConnectionString))
+            using (var sqliteConnection = new SQLiteConnection(sqLiteConnectionString))
 			{
                 sqliteConnection.Open();
 
@@ -78,7 +80,7 @@
 
             const string commandText = @"SELECT eventData, version FROM Events WHERE aggregateId = @aggregateId ORDER BY Version ASC;";
 
-            using (var sqliteConnection = new SQLiteConnection(_sqLiteConnectionString))
+            using (var sqliteConnection = new SQLiteConnection(sqLiteConnectionString))
             {
                 sqliteConnection.Open();
 
