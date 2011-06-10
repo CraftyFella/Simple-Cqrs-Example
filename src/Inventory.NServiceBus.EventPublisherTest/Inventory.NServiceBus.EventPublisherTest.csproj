@@ -75,10 +75,6 @@
       <Project>{2826A6D7-02B4-4BEF-AF91-D5A279C75920}</Project>
       <Name>Inventory.Events</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Inventory.NServiceBus.EventPublisherMessages\Inventory.NServiceBus.EventPublisherMessages.csproj">
-      <Project>{5BC865E6-7F8D-45E4-8D21-E29B3A0D5CFE}</Project>
-      <Name>Inventory.NServiceBus.EventPublisherMessages</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
