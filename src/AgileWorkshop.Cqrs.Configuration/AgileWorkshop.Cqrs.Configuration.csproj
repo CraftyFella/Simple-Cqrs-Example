@@ -5,11 +5,11 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>8.0.30703</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{C3146FD9-A435-4690-9468-3B54C5E1CC39}</ProjectGuid>
+    <ProjectGuid>{3D199A75-3C31-42B5-B44F-DA7476C0E46C}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>AgileWorkshop.Cqrs.Utils</RootNamespace>
-    <AssemblyName>AgileWorkshop.Cqrs.Utils</AssemblyName>
+    <RootNamespace>AgileWorkshop.Cqrs.Configuration</RootNamespace>
+    <AssemblyName>AgileWorkshop.Cqrs.Configuration</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -40,18 +40,23 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AssemblyScanner.cs" />
-    <Compile Include="DelegateAdjuster.cs" />
-    <Compile Include="Reflection\Field.cs" />
-    <Compile Include="Reflection\IProperty.cs" />
-    <Compile Include="Reflection\PrivateReflectionDynamicObject.cs" />
-    <Compile Include="Reflection\PrivateReflectionDynamicObjectExtensions.cs" />
+    <Compile Include="HandlerHelper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Reflection\Property.cs" />
-    <Compile Include="Reflection\Reflect.cs" />
-    <Compile Include="Reflection\TypeExtensions.cs" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\AgileWorkshop.Bus\AgileWorkshop.Bus.csproj">
+      <Project>{5A83ACA9-3F0F-424D-A8A1-E6D88E3F0490}</Project>
+      <Name>AgileWorkshop.Bus</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\AgileWorkshop.Cqrs.Core\AgileWorkshop.Cqrs.Core.csproj">
+      <Project>{12B4A4A2-93B9-4F1B-B29B-ED68B91004D9}</Project>
+      <Name>AgileWorkshop.Cqrs.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\AgileWorkshop.Cqrs.Utils\AgileWorkshop.Cqrs.Utils.csproj">
+      <Project>{C3146FD9-A435-4690-9468-3B54C5E1CC39}</Project>
+      <Name>AgileWorkshop.Cqrs.Utils</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

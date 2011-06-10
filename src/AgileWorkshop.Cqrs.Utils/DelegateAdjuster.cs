@@ -22,3 +22,6 @@ namespace Inventory.Infrastructure
 		}
 	}
 }
+
+
+

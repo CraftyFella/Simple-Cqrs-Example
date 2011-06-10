@@ -57,6 +57,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "NServiceBusTests", "NServic
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Inventory.NServiceBus.EventPublisherMessages", "Inventory.NServiceBus.EventPublisherMessages\Inventory.NServiceBus.EventPublisherMessages.csproj", "{5BC865E6-7F8D-45E4-8D21-E29B3A0D5CFE}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AgileWorkshop.Cqrs.Configuration", "AgileWorkshop.Cqrs.Configuration\AgileWorkshop.Cqrs.Configuration.csproj", "{3D199A75-3C31-42B5-B44F-DA7476C0E46C}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -247,6 +249,16 @@ Global
 		{5BC865E6-7F8D-45E4-8D21-E29B3A0D5CFE}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
 		{5BC865E6-7F8D-45E4-8D21-E29B3A0D5CFE}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 		{5BC865E6-7F8D-45E4-8D21-E29B3A0D5CFE}.Release|x86.ActiveCfg = Release|Any CPU
+		{3D199A75-3C31-42B5-B44F-DA7476C0E46C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3D199A75-3C31-42B5-B44F-DA7476C0E46C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3D199A75-3C31-42B5-B44F-DA7476C0E46C}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{3D199A75-3C31-42B5-B44F-DA7476C0E46C}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{3D199A75-3C31-42B5-B44F-DA7476C0E46C}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{3D199A75-3C31-42B5-B44F-DA7476C0E46C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3D199A75-3C31-42B5-B44F-DA7476C0E46C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3D199A75-3C31-42B5-B44F-DA7476C0E46C}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{3D199A75-3C31-42B5-B44F-DA7476C0E46C}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{3D199A75-3C31-42B5-B44F-DA7476C0E46C}.Release|x86.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -262,6 +274,7 @@ Global
 		{12B4A4A2-93B9-4F1B-B29B-ED68B91004D9} = {9E41F87B-C875-4CD5-822D-04799E8D9CEB}
 		{25DB027C-C680-47F2-BCAC-2C3FC8426F06} = {9E41F87B-C875-4CD5-822D-04799E8D9CEB}
 		{C3146FD9-A435-4690-9468-3B54C5E1CC39} = {9E41F87B-C875-4CD5-822D-04799E8D9CEB}
+		{3D199A75-3C31-42B5-B44F-DA7476C0E46C} = {9E41F87B-C875-4CD5-822D-04799E8D9CEB}
 		{190F803C-3E57-4B95-97C5-A20E79D48513} = {54A22AA4-46E0-4A14-A191-F0AAC1FACEEA}
 		{E96FA8BB-4EFE-4620-A0AE-6D8E783331EA} = {54A22AA4-46E0-4A14-A191-F0AAC1FACEEA}
 		{64527A61-7687-42F3-A07F-1DB5A35840D9} = {A881EC5B-3C6F-4038-B304-7E52B5EF07CF}

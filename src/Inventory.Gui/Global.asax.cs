@@ -1,12 +1,13 @@
 ﻿using System;
+using System.Linq;
 using System.Web.Mvc;
 using System.Web.Routing;
 
 using AgileWorkshop.Bus;
-
+using AgileWorkshop.Cqrs.Core;
 using Inventory.Commands;
 using Inventory.Events;
-
+using Inventory.Infrastructure;
 using Ninject;
 using Ninject.Modules;
 
@@ -38,6 +39,7 @@ namespace Inventory.Gui
 
 			RegisterRoutes(RouteTable.Routes);
 
+		    
 			// Setup Our new Controller Factory.
 			//IKernel kernel = new StandardKernel(new InventoryConfigModule());
 			ControllerBuilder.Current.SetControllerFactory(new NinjectControllerFactory(InventoryKernal));
