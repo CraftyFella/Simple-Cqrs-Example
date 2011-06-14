@@ -1,12 +1,16 @@
+Still very much a work in progress.. The idea was to create a CQRS demo for a work presentation. I didn't want to have to use any particular technologies, as I know the best part of CQRS is the freedom you have when choosing a technology.
+
+So I started with Greg Young's example which is as simple as it gets. 
+
 Took Greg Youngs simple cqrs example:
 
 https://github.com/gregoryyoung/m-r
 
-and added a few things:
+Then I added a few things, that we'll need like:
 
 1. Testing
 2. Sqlite reporting support and sqlite event store support
-3. IoC support using Ninject
+3. IoC support using Ninject (Not plugable at the minute, but working on it)
 
 Took the Testing and Reporting ideas from Mark Nijhof's Cqrs example:
 
