@@ -11,3 +11,7 @@ and added a few things:
 Took the Testing and Reporting ideas from Mark Nijhof's Cqrs example:
 
 https://github.com/MarkNijhof/Fohjin
+
+Took the NServiceBus Extension ideas from Tyrone Groves Simple Cqrs example framework:
+
+https://github.com/tyronegroves/SimpleCQRS
