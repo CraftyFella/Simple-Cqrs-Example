@@ -37,6 +37,7 @@
     <Reference Include="log4net, Version=1.2.10.0, Culture=neutral, PublicKeyToken=1b44e1d426115821, processorArchitecture=MSIL">
       <HintPath>..\..\lib\NServiceBus\log4net.dll</HintPath>
     </Reference>
+    <Reference Include="Ninject, Version=2.2.0.0, Culture=neutral, PublicKeyToken=c7192dc5380945e7, processorArchitecture=MSIL" />
     <Reference Include="NServiceBus, Version=3.0.0.0, Culture=neutral, PublicKeyToken=9fc386479f8a226c, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\lib\NServiceBus\NServiceBus.dll</HintPath>
@@ -45,8 +46,7 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\lib\NServiceBus\NServiceBus.Core.dll</HintPath>
     </Reference>
-    <Reference Include="NServiceBus.Host, Version=3.0.0.0, Culture=neutral, PublicKeyToken=9fc386479f8a226c, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
+    <Reference Include="NServiceBus.Host">
       <HintPath>..\..\lib\NServiceBus\NServiceBus.Host.exe</HintPath>
     </Reference>
     <Reference Include="System" />
@@ -67,6 +67,10 @@
       <Project>{5A83ACA9-3F0F-424D-A8A1-E6D88E3F0490}</Project>
       <Name>AgileWorkshop.Bus</Name>
     </ProjectReference>
+    <ProjectReference Include="..\AgileWorkshop.Cqrs.Configuration\AgileWorkshop.Cqrs.Configuration.csproj">
+      <Project>{3D199A75-3C31-42B5-B44F-DA7476C0E46C}</Project>
+      <Name>AgileWorkshop.Cqrs.Configuration</Name>
+    </ProjectReference>
     <ProjectReference Include="..\AgileWorkshop.Cqrs.Core\AgileWorkshop.Cqrs.Core.csproj">
       <Project>{12B4A4A2-93B9-4F1B-B29B-ED68B91004D9}</Project>
       <Name>AgileWorkshop.Cqrs.Core</Name>
@@ -83,6 +87,9 @@
   <ItemGroup>
     <None Include="App.config">
       <SubType>Designer</SubType>
+    </None>
+    <None Include="NServiceBus.Host.exe.config">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -34,6 +34,7 @@
     <Reference Include="log4net">
       <HintPath>..\..\lib\NServiceBus\log4net.dll</HintPath>
     </Reference>
+    <Reference Include="Ninject, Version=2.2.0.0, Culture=neutral, PublicKeyToken=c7192dc5380945e7, processorArchitecture=MSIL" />
     <Reference Include="NServiceBus">
       <HintPath>..\..\lib\NServiceBus\NServiceBus.dll</HintPath>
     </Reference>
@@ -56,6 +57,7 @@
     <Compile Include="DomainEventEndpointMapping.cs" />
     <Compile Include="DomainEventEndpointMappingCollection.cs" />
     <Compile Include="INServiceBusEventMessage.cs" />
+    <Compile Include="NsbEventBus.cs" />
     <Compile Include="NServiceBusEventMessage.cs" />
     <Compile Include="NServiceBusEventMessageHandler.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -64,6 +66,10 @@
     <ProjectReference Include="..\AgileWorkshop.Bus\AgileWorkshop.Bus.csproj">
       <Project>{5A83ACA9-3F0F-424D-A8A1-E6D88E3F0490}</Project>
       <Name>AgileWorkshop.Bus</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\AgileWorkshop.Cqrs.Configuration\AgileWorkshop.Cqrs.Configuration.csproj">
+      <Project>{3D199A75-3C31-42B5-B44F-DA7476C0E46C}</Project>
+      <Name>AgileWorkshop.Cqrs.Configuration</Name>
     </ProjectReference>
     <ProjectReference Include="..\AgileWorkshop.Cqrs.Core\AgileWorkshop.Cqrs.Core.csproj">
       <Project>{12B4A4A2-93B9-4F1B-B29B-ED68B91004D9}</Project>

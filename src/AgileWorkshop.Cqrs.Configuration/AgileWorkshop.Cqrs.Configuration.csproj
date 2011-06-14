@@ -31,6 +31,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Ninject">
+      <HintPath>..\..\lib\Ninject\Ninject.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -40,7 +43,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BusBootStrapper.cs" />
     <Compile Include="HandlerHelper.cs" />
+    <Compile Include="InventoryConfigModule.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -51,6 +56,14 @@
     <ProjectReference Include="..\AgileWorkshop.Cqrs.Core\AgileWorkshop.Cqrs.Core.csproj">
       <Project>{12B4A4A2-93B9-4F1B-B29B-ED68B91004D9}</Project>
       <Name>AgileWorkshop.Cqrs.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\AgileWorkshop.Cqrs.EventStore\AgileWorkshop.Cqrs.EventStore.csproj">
+      <Project>{29FAAE57-D603-4FC4-AAAA-88B183007CFC}</Project>
+      <Name>AgileWorkshop.Cqrs.EventStore</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\AgileWorkshop.Cqrs.Reporting\AgileWorkshop.Cqrs.Reporting.csproj">
+      <Project>{25DB027C-C680-47F2-BCAC-2C3FC8426F06}</Project>
+      <Name>AgileWorkshop.Cqrs.Reporting</Name>
     </ProjectReference>
     <ProjectReference Include="..\AgileWorkshop.Cqrs.Utils\AgileWorkshop.Cqrs.Utils.csproj">
       <Project>{C3146FD9-A435-4690-9468-3B54C5E1CC39}</Project>

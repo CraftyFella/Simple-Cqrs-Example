@@ -6,7 +6,7 @@ using Inventory.Events;
 
 namespace Inventory.NServiceBus.EventHandlers
 {
-	public class InventoryItemListViewHandler : IHandle<InventoryItemCreated>, IHandle<InventoryItemRenamed>, IHandle<InventoryItemDeactivated>
+    public class InventoryItemListViewHandler : IHandle<InventoryItemCreated>, IHandle<InventoryItemRenamed>, IHandle<InventoryItemDeactivated>, IHandle<ItemsCheckedInToInventory>, IHandle<ItemsRemovedFromInventory>
 	{
 		public void Handle(InventoryItemCreated message)
 		{
@@ -22,5 +22,15 @@ namespace Inventory.NServiceBus.EventHandlers
 		{
 			Console.WriteLine("InventoryItemDeactivated");
 		}
+
+        public void Handle(ItemsCheckedInToInventory message)
+        {
+            Console.WriteLine("ItemsCheckedInToInventory");
+        }
+
+        public void Handle(ItemsRemovedFromInventory message)
+        {
+            Console.WriteLine("ItemsRemovedFromInventory");
+        }
 	}
 }

@@ -1,4 +1,5 @@
-﻿using AgileWorkshop.Cqrs.Core;
+﻿using System.Collections.Generic;
+using AgileWorkshop.Cqrs.Core;
 
 using NServiceBus;
 

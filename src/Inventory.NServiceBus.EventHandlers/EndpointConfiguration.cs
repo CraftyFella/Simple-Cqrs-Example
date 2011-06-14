@@ -1,6 +1,7 @@
 ﻿
+using AgileWorkshop.Cqrs.Configuration;
 using AgileWorkshop.Cqrs.NServiceBus;
-
+using Ninject;
 using NServiceBus;
 
 namespace Inventory.EventHandlers
@@ -13,11 +14,12 @@ namespace Inventory.EventHandlers
 	{
 		public void Init()
 		{
+
 			Configure.With()
 				.DefaultBuilder()
 				.BinarySerializer()
 				//.SimpleCqrs(new SimpleCqrsRuntime<UnityServiceLocator>())
-				.AgileWorkshopCqrsNServiceBus()
+                .AgileWorkshopCqrsNServiceBus(new StandardKernel(new InventoryConfigModule()))
 				.SubscribeForDomainEvents();    // Tells SimpleCqrs to subscribe for domain events
 
 			// The DomainEventBusConfig element in the Web.config tell SimpleCqrs which domain events to listen for and the queue 

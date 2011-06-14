@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 
 using AgileWorkshop.Bus;
-
+using AgileWorkshop.Cqrs.Configuration;
 using Inventory.Events;
-
+using Ninject;
 using NServiceBus;
 using NServiceBus.Unicast;
 
@@ -13,19 +13,18 @@ namespace AgileWorkshop.Cqrs.NServiceBus
 	public class ConfigEventBus : Configure
 	{
 		private readonly Configure configure;
+	    private readonly IKernel _kernel;
 
-		public ConfigEventBus(Configure configure)
+	    public ConfigEventBus(Configure configure, IKernel kernel)
 		{
-			this.configure = configure;
+		    this.configure = configure;
+		    _kernel = kernel;
 		}
 
-		public ConfigEventBus SubscribeForDomainEvents()
-		{
-			// TODO: Get Event Handlers some how!!!! rather than hard coding
-			//var eventHandlerTypes = new[] { typeof(InventoryItemListViewHandler), typeof(InventoryItemDetailViewHandler) };
-
-			// TODO: Get IRouteMessages from IoC
-			var eventBus = new FakeBus(new MessageRouter());
+	    public ConfigEventBus SubscribeForDomainEvents()
+	    {
+	        BusBootStrapper.BootStrap(_kernel);
+            var eventBus = _kernel.Get<IEventBus>();
 
 			// Override the IEventBus in IoC with the NsB one
 			configure.Configurer.RegisterSingleton<IEventBus>(eventBus);
@@ -43,12 +42,7 @@ namespace AgileWorkshop.Cqrs.NServiceBus
 		{
 			var domainEventBusConfig = GetConfigSection<DomainEventBusConfig>();
 
-			//TODO: Replace this with a Find classes that inherit from Event In Assembly blar blar blar
-			var domainEventTypes = new[]
-        		{
-        			typeof(InventoryItemCreated), typeof(InventoryItemDeactivated), typeof(InventoryItemRenamed),
-        			typeof(ItemsCheckedInToInventory), typeof(ItemsRemovedFromInventory)
-        		};
+		    var domainEventTypes = HandlerHelper.GetEvents();
 
 			var domainEventsTypesWrappedWithNServiceBusType = new List<Type>();
 
