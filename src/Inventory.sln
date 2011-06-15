@@ -49,12 +49,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AgileWorkshop.Cqrs.NService
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Inventory.NServiceBus.EventHandlers", "Inventory.NServiceBus.EventHandlers\Inventory.NServiceBus.EventHandlers.csproj", "{B2FB15B4-2099-467C-90BF-6D99126BFDB3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Inventory.NServiceBus.EventPublisherTest", "Inventory.NServiceBus.EventPublisherTest\Inventory.NServiceBus.EventPublisherTest.csproj", "{94B83FAC-0AB5-4367-8238-69D9CF8C0C55}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Inventory.NServiceBus.EventListenerTest", "Inventory.NServiceBus.EventListenerTest\Inventory.NServiceBus.EventListenerTest.csproj", "{C8616A5A-A02C-4879-9549-3AD2DEB6B47B}"
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "NServiceBusTests", "NServiceBusTests", "{C4E72264-E87B-418A-8A90-F0985B622556}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AgileWorkshop.Cqrs.Configuration", "AgileWorkshop.Cqrs.Configuration\AgileWorkshop.Cqrs.Configuration.csproj", "{3D199A75-3C31-42B5-B44F-DA7476C0E46C}"
 EndProject
 Global
@@ -217,26 +211,6 @@ Global
 		{B2FB15B4-2099-467C-90BF-6D99126BFDB3}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
 		{B2FB15B4-2099-467C-90BF-6D99126BFDB3}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 		{B2FB15B4-2099-467C-90BF-6D99126BFDB3}.Release|x86.ActiveCfg = Release|Any CPU
-		{94B83FAC-0AB5-4367-8238-69D9CF8C0C55}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{94B83FAC-0AB5-4367-8238-69D9CF8C0C55}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{94B83FAC-0AB5-4367-8238-69D9CF8C0C55}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
-		{94B83FAC-0AB5-4367-8238-69D9CF8C0C55}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
-		{94B83FAC-0AB5-4367-8238-69D9CF8C0C55}.Debug|x86.ActiveCfg = Debug|Any CPU
-		{94B83FAC-0AB5-4367-8238-69D9CF8C0C55}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{94B83FAC-0AB5-4367-8238-69D9CF8C0C55}.Release|Any CPU.Build.0 = Release|Any CPU
-		{94B83FAC-0AB5-4367-8238-69D9CF8C0C55}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
-		{94B83FAC-0AB5-4367-8238-69D9CF8C0C55}.Release|Mixed Platforms.Build.0 = Release|Any CPU
-		{94B83FAC-0AB5-4367-8238-69D9CF8C0C55}.Release|x86.ActiveCfg = Release|Any CPU
-		{C8616A5A-A02C-4879-9549-3AD2DEB6B47B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{C8616A5A-A02C-4879-9549-3AD2DEB6B47B}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{C8616A5A-A02C-4879-9549-3AD2DEB6B47B}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
-		{C8616A5A-A02C-4879-9549-3AD2DEB6B47B}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
-		{C8616A5A-A02C-4879-9549-3AD2DEB6B47B}.Debug|x86.ActiveCfg = Debug|Any CPU
-		{C8616A5A-A02C-4879-9549-3AD2DEB6B47B}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{C8616A5A-A02C-4879-9549-3AD2DEB6B47B}.Release|Any CPU.Build.0 = Release|Any CPU
-		{C8616A5A-A02C-4879-9549-3AD2DEB6B47B}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
-		{C8616A5A-A02C-4879-9549-3AD2DEB6B47B}.Release|Mixed Platforms.Build.0 = Release|Any CPU
-		{C8616A5A-A02C-4879-9549-3AD2DEB6B47B}.Release|x86.ActiveCfg = Release|Any CPU
 		{3D199A75-3C31-42B5-B44F-DA7476C0E46C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{3D199A75-3C31-42B5-B44F-DA7476C0E46C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3D199A75-3C31-42B5-B44F-DA7476C0E46C}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
@@ -272,8 +246,6 @@ Global
 		{054F6821-9CE7-4ADF-9411-EE9836DDC09B} = {7AAC3EDA-EAB4-402F-A224-1441827D6309}
 		{88C6AEC5-5553-4461-95C2-3CCB88EAEC4E} = {5FD62C0E-0179-4BD9-92D3-266472A01F3E}
 		{2A0D23C6-A181-43D0-A20D-A7D8ED6D0D44} = {3DBBB27C-7DF6-4230-ABB4-34AE805410AA}
-		{C8616A5A-A02C-4879-9549-3AD2DEB6B47B} = {C4E72264-E87B-418A-8A90-F0985B622556}
-		{94B83FAC-0AB5-4367-8238-69D9CF8C0C55} = {C4E72264-E87B-418A-8A90-F0985B622556}
 	EndGlobalSection
 	GlobalSection(MonoDevelopProperties) = preSolution
 		StartupItem = SimpleCQRS\SimpleCQRS.csproj
